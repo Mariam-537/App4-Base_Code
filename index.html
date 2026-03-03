@@ -69,12 +69,6 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
             var total = mono_count + strep_count;
 
-            // Prevent divide by zero error
-            if (total === 0) {
-                document.getElementById("results").innerHTML =
-                    "Please answer the questions first.";
-                return;
-            }
 
             var monoPercent = Math.round((mono_count / total) * 100);
             var strepPercent = Math.round((strep_count / total) * 100);
@@ -136,8 +130,11 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         <p>Answer a few short questions to find out!</p>
 
         <!-- Responsive Image -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Sore_throat.jpg"
-             alt="Sore throat image">
+       <img
+ src="https://virginiaent.com/wp-content/uploads/2025/02/VAENT-What-Causes-a-Sore-Throat-That-Wont-Go-Away-Blog.png"
+ alt="Sore throat"
+ class="responsive-img">
+
 
         <!-- Get Started button -->
         <a href="#one" class="w3-btn w3-black w3-round">Get Started</a>
