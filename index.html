@@ -28,176 +28,203 @@ https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-<head> 
-	<title>Hello World</title>  
-]	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="w3.css">
-	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
-
-<!--This is the function that shows the title of the website, this is taken from the original index, I just changed the name of the title to Mono or Strep  --> 	
-   <head> 
-      <title>Cold or Allergy</title>  
-      <meta name="viewport" content="width=device-width, initial-scale=1"> <!--this shows the scale that the viewer will see -->
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <link rel="stylesheet" href="w3.css">
-      <link rel="stylesheet" href="w3-colors-flat.css">
-   </head> 
-
-
 <!DOCTYPE html>
 <html>
-</style>
-<!-- This is the function of adding up the allergy or cold, which will be calculated at the end. I used the code from the procedures page, which will calculate the probability as users go through the app and click the different buttons per question -->
-<script>
-var mono_count = 0; //this will be the mono count
-var strep_count = 0; // this is the strep count 
 
-function monoAdd(nextPage){
-    mono_count++;
-    location.href = nextPage;
-} //this is the function that adds up the mono count after the user presses on the specific button that indicates a symptom of mono 
+<head>
+    <title>Mono or Strep?</title>
 
-function strepAdd(nextPage){
-    strep_count++;
-    location.href = nextPage;
-} //this is the function that adds up the strep count, should the user click the button that aligns with a symptom of strep throat
+    <!-- this shows the scale that the viewer will see -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-function showResults(){
-    var total = mono_count + strep_count;
-    var monoPercent = Math.round((mono_count/total)*100);
-    var strepPercent = Math.round((strep_count/total)*100);
-//The function above is the function that uses the counts from the buttons to formulate a percentage that shows the viewer their likelihood of mono or strep, it will show the user the percentage probability of each based on the answers that they pressed
-    document.getElementById("results").innerHTML =
-        "Mononucleisis likelihood: " + monoPercent + "%<br>" +
-        "Strep Throat likelihood: " + strepPercent + "%";
-}
-</script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- W3 styling sheets -->
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="w3-colors-flat.css">
+
+    <!-- This is the function of adding up the mono or strep counts,
+         which will be calculated at the end -->
+    <script>
+
+        var mono_count = 0;  // this will be the mono count
+        var strep_count = 0; // this is the strep count 
+
+        // this function adds up the mono count after the user presses 
+        // on the specific button that indicates a symptom of mono 
+        function monoAdd(nextPage) {
+            mono_count++;
+            location.href = nextPage;
+        }
+
+        // this function adds up the strep count,
+        // should the user click the button that aligns with strep
+        function strepAdd(nextPage) {
+            strep_count++;
+            location.href = nextPage;
+        }
+
+        // The function below calculates the percentage likelihood
+        function showResults() {
+
+            var total = mono_count + strep_count;
+
+            // Prevent divide by zero error
+            if (total === 0) {
+                document.getElementById("results").innerHTML =
+                    "Please answer the questions first.";
+                return;
+            }
+
+            var monoPercent = Math.round((mono_count / total) * 100);
+            var strepPercent = Math.round((strep_count / total) * 100);
+
+            document.getElementById("results").innerHTML =
+                "Mononucleosis likelihood: " + monoPercent + "%<br>" +
+                "Strep Throat likelihood: " + strepPercent + "%";
+        }
+
+    </script>
+
+    <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD -->
+    <style>
+
+        body {
+            margin: 0em;
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: -100vw;
+            overflow-y: auto;
+            z-index: 0;
+            background-color: white;
+            padding-bottom: 40px;
+        }
+
+        /* Responsive Image */
+        img {
+            width: 100%;          /* makes image resize with screen */
+            max-width: 500px;     /* prevents it from being too large */
+            height: auto;         /* keeps proportions correct */
+            display: block;
+            margin: 20px auto;
+        }
+
+        .page:target {
+            left: 0vw;
+            z-index: 1;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-<!-- This will be the home Page that users will see upon clicking on the website. Mono or Allergies signify the header, the get started button will pop up for the users to click on which will move them to the next page  -->
-<div class="w3-container w3-flat-carrot">
-<h1>Mono or Strep?</h1> <!--this is the header that users will see -->
-</div>
-<!-- This part of the code will show users a "get started" button, which will take them to the next page upon clicking-->
-<div class="w3-container">
-<p>Answer a few short questions to find out!</p> <!--this is just text to show the users to click the button -->
-	  <!-- Responsive Image -->
-    <!-- This image resizes automatically using width:100% and max-width -->
-   
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Sore_throat.jpg"
-     alt="Sore throat image">
-</style>
+<!-- HOME PAGE -->
+<div id="home" class="page" style="left:0vw;">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Mono or Strep?</h1>
+    </div>
 
+    <div class="w3-container">
 
-<a href="#one" class="w3-btn w3-black w3-round">Get Started</a> <!--this is the function for the button to get started, taking them to the page with the first question-->  
-<p> The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code. </p>
- The goal of this code is to practice diagnostic capabilities on GitHub and to work with coding while exploring its advantages in the diagnositic, feild, this app does not actually diagnose. Please see a medical professional for advice.
- 
-THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION. </p>
-</div>
+        <p>Answer a few short questions to find out!</p>
 
-<!-- Question 1: this is just from the base code of App 3, I just inserted the first given question by switching out the words and what the buttons will add to from the functions above  -->
-<div id="one" class="page"> <!--this indicates that its the first page -->
-<div class="w3-container w3-flat-carrot">
-	<h1>Question 1</h1></div> 
-	<!-- this is header text saying that it's the first question -->
-<div class="w3-container">
-<p>Do you have extreme fatige?</p> <!--this is the question that shows up for the viewer-->
-<button onclick="monoAdd('#two')" class="w3-btn w3-black">Yes</button> <!-- this function adds probability for mono if the user clicks yes-->
-<button onclick="strepAdd('#two')" class="w3-btn w3-black">No</button> <!--this is the no button that adds a count towards strep if pressed-->
-</div>
+        <!-- Responsive Image -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Sore_throat.jpg"
+             alt="Sore throat image">
+
+        <!-- Get Started button -->
+        <a href="#one" class="w3-btn w3-black w3-round">Get Started</a>
+
+        <p>
+            The following code has been developed by students and/or researchers of the 
+            Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.
+            This code is shared for demonstration purposes only and should not be considered
+            a medical product.
+        </p>
+
+        <p>
+            THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
+            Please see a medical professional for advice.
+        </p>
+
+    </div>
 </div>
 
-<!-- Question 2, for this I switched around yes and no by putting strep for yes and the other, so this new question is based on symptoms more prevalent in cases of strep throat -->
+<!-- Question 1 -->
+<div id="one" class="page">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 1</h1>
+    </div>
+
+    <div class="w3-container">
+        <p>Do you have extreme fatigue?</p>
+        <button onclick="monoAdd('#two')" class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#two')" class="w3-btn w3-black">No</button>
+    </div>
+</div>
+
+<!-- Question 2 -->
 <div id="two" class="page">
-	<div class="w3-container w3-flat-carrot"> <!--this is the formatting for the page -->
-	<h1>Question 2</h1></div> 
-	<!--this is the header in the orange part-->
-<div class="w3-container">
-<p>Do you have a high fever?</p> <!--this is the question text that shows up for the viewer, strep often has a higher fever than mono-->
-	<!-- the code for the question was taken from the original index, below I changed the coding for the buttons to be specific to the page and to align the result of the answers with what the question is asking about, in this case, it would be a cold symptom --> 
-<button onclick="strepAdd('#three')" class="w3-btn w3-black">Yes</button> <!--if the user clicks yes this function adds to the strep count -->
-<button onclick="monoAdd('#three')" class="w3-btn w3-black">No</button> <!--no button that if clicked adds to the mono count --> 
-</div>
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 2</h1>
+    </div>
+
+    <div class="w3-container">
+        <p>Do you have a high fever?</p>
+        <button onclick="strepAdd('#three')" class="w3-btn w3-black">Yes</button>
+        <button onclick="monoAdd('#three')" class="w3-btn w3-black">No</button>
+    </div>
 </div>
 
-<!-- Question 3, I just copied the code from the first question and changed the words for the actual question. I continued by tweaking the page-specific areas of code, which I have done as well on the previous pages -->
-<div id="three" class="page"> <!--this shows that its the third page now -->
-<div class="w3-container w3-flat-carrot"> <!--formatting for the orange part at the top of the page-->
-	<h1>Question 3</h1></div> <!--the header is in the orange box at the top of the page, this is the code that signifies the header-->
-<div class="w3-container">
-	<!-- the code below will show users the question written and then two buttons, if they click yes, it will add to the probability of mono, as it is slower developing and usually lasts longer, and then the function will move the users to the next page --> 
-<p>Have you had these symptoms for over a week?</p>
-<button onclick="monoAdd('#four')" class="w3-btn w3-black">Yes</button> <!--this code makes clicking yes add to the mono count-->
-<button onclick="strepAdd('#four')" class="w3-btn w3-black">No</button> <!--this function will add to the strep count if no is clicked -->
-</div>
+<!-- Question 3 -->
+<div id="three" class="page">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 3</h1>
+    </div>
+
+    <div class="w3-container">
+        <p>Have you had these symptoms for over a week?</p>
+        <button onclick="monoAdd('#four')" class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#four')" class="w3-btn w3-black">No</button>
+    </div>
 </div>
 
-<!-- Question 4, here I just changed the page id and the question, as I have done on the past pages. I also made sure to tweak what 'yes' and 'no' would be in terms of mono or strep  -->
-<div id="four" class="page"> <!--this lets the code know which page it is -->
-<div class="w3-container w3-flat-carrot"> <!--this is the formatting-->
-	<h1>Question 4</h1></div> <!--this is the actual text on the header of the page, this code above and below signifies formatting -->
-<div class="w3-container">
-<p>Do you have pain/enlargement in your spleen ?</p> <!--this is the text (question) that appears on the page-->
-	<!-- the question above and two buttons will appear for the user, if they click yes, it will add to the probability of mono as well, since it is a distinct symptom, however, if they press no it adds to the strep count  -->
-<button onclick="monoAdd('#resultsPage')" class="w3-btn w3-black">Yes</button> <!--this is the function that shows that when the user clicks on yes, it will both add to the mono count and also take the user to the results page -->
-<button onclick="strepAdd('#resultsPage')" class="w3-btn w3-black">No</button> <!--when the user presses no, it adds to the strep count and moves the user to the results page-->
-</div>
+<!-- Question 4 -->
+<div id="four" class="page">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 4</h1>
+    </div>
+
+    <div class="w3-container">
+        <p>Do you have pain/enlargement in your spleen?</p>
+        <button onclick="monoAdd('#resultsPage')" class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#resultsPage')" class="w3-btn w3-black">No</button>
+    </div>
 </div>
 
-<!-- Results Page, this is where it will be able to calculate the results, which had the function written at the top of the code. This code will show a big green button, which, upon pressing, will give the user the probability calculated by the questions  -->
-<div id="resultsPage" class="page"> <!--this tells the code that this is a page named results, aka the ID of the page is results-->
-<div class="w3-container w3-flat-carrot"> <!this is the formatting -->
-	<!-- This h1 just signifies the text that will show up in the "Header 1" format -->
-	<h1>Results</h1></div>
-<div class="w3-container">
-<p id="results"></p>
-	<!-- This function below will show users their results once they click on the button -->
-<button onclick="showResults()" class="w3-btn w3-green">Show Results</button> 
-</div> 
-   <br><br>
-    <a href="#home" class="w3-button w3-black">Start Over</a>
+<!-- Results Page -->
+<div id="resultsPage" class="page">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Results</h1>
+    </div>
 
+    <div class="w3-container">
+        <p id="results"></p>
+        <button onclick="showResults()" class="w3-btn w3-green">Show Results</button>
+        <br><br>
+        <a href="#home" class="w3-button w3-black">Start Over</a>
+    </div>
 </div>
 
 </body>
 </html>
-
-
-</script>	
-
-
-<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
-<style>	
-.body {
-     margin: 0em;
-}
-
-.page {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: -100vw;
-    overflow-y: auto;
-    z-index: 0;
-    background-color: hsl(0,0%,100%);
-}
-	img {
-    max-height: 90%;
-    max-width: 90%;
-}
-
-  .page:target {
-    left: 0vw;
-    z-index: 1;
-}
-</style>
-
 <body>
 	
 	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO, don't really know what this means -->
