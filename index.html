@@ -80,39 +80,33 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     </script>
 
     <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD, this includes the whole page and also the image  -->
-    <style>
+ <style>
+    body {
+        margin: 0em;
+    }
 
-        body {
-            margin: 0em;
-        }
+    .page {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: -100vw;
+        overflow-y: auto;
+        z-index: 0;
+        background-color: white;
+        padding-bottom: 40px;
+    }
 
-        .page {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: -100vw;
-            overflow-y: auto;
-            z-index: 0;
-            background-color: white;
-            padding-bottom: 40px;
-        }
-
-    <style>
-       	img, object{
+  	img, object{
             	max-height:90%;
         		max-width:90%;
         	}
+
+    .page:target {
+        left: 0vw;
+        z-index: 1;
+    }
 </style>
-
-
-        .page:target {
-            left: 0vw;
-            z-index: 1;
-        }
-
-    </style>
-
 </head>
 
 <body>
@@ -226,7 +220,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     </div>
 </div>
 
-<!-- Results Page, below is the id of the page that singifies that it is the results page -->
+<!-- Results Page, below is the id of the page that signifies that it is the results page -->
 <div id="resultsPage" class="page"> 
 	<!-- this is the formatting of the page --> 
     <div class="w3-container w3-flat-carrot">
