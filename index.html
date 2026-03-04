@@ -50,7 +50,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
         var mono_count = 0;  // this will be the mono count
         var strep_count = 0; // this is the strep count 
 
-        // this function adds up the mono count after the user presses 
+        //This function adds up the mono count after the user presses 
         // on the specific button that indicates a symptom of mono 
         function monoAdd(nextPage) {
             mono_count++;
@@ -80,7 +80,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
     </script>
 
-    <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD -->
+    <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD, this includes the whole page and also the image  -->
     <style>
 
         body {
@@ -99,14 +99,13 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
             padding-bottom: 40px;
         }
 
-        /* Responsive Image */
-        img {
-            width: 100%;          /* makes image resize with screen */
-            max-width: 500px;     /* prevents it from being too large */
-            height: auto;         /* keeps proportions correct */
-            display: block;
-            margin: 20px auto;
-        }
+    <style>
+       	img, object{
+            	max-height:90%;
+        		max-width:90%;
+        	}
+</style>
+
 
         .page:target {
             left: 0vw;
@@ -138,7 +137,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
         <!-- Get Started button -->
         <a href="#one" class="w3-btn w3-black w3-round">Get Started</a>
-
+<!-- this is a warning that will show up as text for the viewer --> 
         <p>
             The following code has been developed by students and/or researchers of the 
             Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.
@@ -155,68 +154,92 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </div>
 
 <!-- Question 1 -->
+	<!-- this part tells the code which page its on--> 
 <div id="one" class="page">
+	<!-- this is the formatting --> 
     <div class="w3-container w3-flat-carrot">
-        <h1>Question 1</h1>
+		<!-- this is the header that shows up on the page, for these questions I essentially copied them from the last App code  --> 
+        <h1>Question 1</h1> 
     </div>
 
     <div class="w3-container">
-        <p>Do you have extreme fatigue?</p>
-        <button onclick="monoAdd('#two')" class="w3-btn w3-black">Yes</button>
-        <button onclick="strepAdd('#two')" class="w3-btn w3-black">No</button>
+        <p>Do you have extreme fatigue?</p> <!--this is the question that shows up for the viewer--> 
+      <!-- this function below will add to mono if the user clicks yes and add to strep if the user clicks no, then takes them to the next page --> 
+		<button onclick="monoAdd('#two')" 
+			class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#two')" 
+			class="w3-btn w3-black">No</button>
     </div>
 </div>
 
 <!-- Question 2 -->
 <div id="two" class="page">
     <div class="w3-container w3-flat-carrot">
+		<!-- all of the code is the same here with the functions of 'yes' and 'no' switched out to match the symptoms of the specific question--> 
         <h1>Question 2</h1>
     </div>
 
     <div class="w3-container">
-        <p>Do you have a high fever?</p>
-        <button onclick="strepAdd('#three')" class="w3-btn w3-black">Yes</button>
-        <button onclick="monoAdd('#three')" class="w3-btn w3-black">No</button>
+		<!-- this is the question that shows up for the viewer--> 
+        <p>Do you have a high fever?</p> 
+        <button onclick="strepAdd('#three')" 
+			class="w3-btn w3-black">Yes</button> 
+		<!-- if the user clicks yes, it adds to strep and then takes them to the next page, the reverse happens for no, and still takes them to the next page --> 
+        <button onclick="monoAdd('#three')" 
+			class="w3-btn w3-black">No</button>
     </div>
 </div>
 
 <!-- Question 3 -->
+	<!-- all of this code follows the questions above while being adjusted to add to the correct likelihood of whichever disease --> 
 <div id="three" class="page">
     <div class="w3-container w3-flat-carrot">
-        <h1>Question 3</h1>
+        <h1>Question 3</h1> <!-- this is the header that the user will see --> 
     </div>
-
+<!-- all the code here is the same as App 3 and the questions above, just switching the function and question itself --> 
     <div class="w3-container">
-        <p>Have you had these symptoms for over a week?</p>
-        <button onclick="monoAdd('#four')" class="w3-btn w3-black">Yes</button>
-        <button onclick="strepAdd('#four')" class="w3-btn w3-black">No</button>
+        <p>Have you had these symptoms for over a week?</p> <!-- this is the question that the user will see --> 
+		<!-- this function adds to mono probability if the user clicks yes-->
+        <button onclick="monoAdd('#four')" 
+			class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#four')" 
+			class="w3-btn w3-black">No</button>
     </div>
 </div>
 
-<!-- Question 4 -->
+<!-- Question 4, this is repeated like the questions above, however by clicking the button, the users will be taken to the results page -->
 <div id="four" class="page">
+	<!-- page id and formatting --> 
     <div class="w3-container w3-flat-carrot">
-        <h1>Question 4</h1>
+        <h1>Question 4</h1> <!-- header that the users will see --> 
     </div>
 
     <div class="w3-container">
-        <p>Do you have pain/enlargement in your spleen?</p>
-        <button onclick="monoAdd('#resultsPage')" class="w3-btn w3-black">Yes</button>
-        <button onclick="strepAdd('#resultsPage')" class="w3-btn w3-black">No</button>
+		<!-- this is the question that the user sees, this question aligns with mono symptoms--> 
+        <p>Do you have pain/enlargement in your spleen?</p> 
+		<!-- function that adds to the mono probability if the yes button is clicked and adds to strep if the no button is clicked --> 
+        <button onclick="monoAdd('#resultsPage')" 
+			class="w3-btn w3-black">Yes</button>
+        <button onclick="strepAdd('#resultsPage')" 
+			class="w3-btn w3-black">No</button>
+		<!-- function above also takes user to results page --> 
     </div>
 </div>
 
-<!-- Results Page -->
-<div id="resultsPage" class="page">
+<!-- Results Page, below is the id of the page that singifies that it is the results page -->
+<div id="resultsPage" class="page"> 
+	<!-- this is the formatting of the page --> 
     <div class="w3-container w3-flat-carrot">
+		<!-- this is the header that users will see --> 
         <h1>Results</h1>
     </div>
 
     <div class="w3-container">
         <p id="results"></p>
-        <button onclick="showResults()" class="w3-btn w3-green">Show Results</button>
+		<!-- this function shows the probabilities calculated thoruhgout when pressed, this function also creates the results button --> 
+        <button onclick="showResults()" 
+			class="w3-btn w3-green">Show Results</button>
         <br><br>
-        <a href="#home" class="w3-button w3-black">Start Over</a>
     </div>
 </div>
 
@@ -224,8 +247,18 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </html>
 <body>
 	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO, don't really know what this means -->
+	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
 	
-	
+div id="home"
+
+div id="one"
+
+div id="two"
+
+div id="three"
+
+div id="four"
+
+div id="resultsPage"
 </body>
 </html>
